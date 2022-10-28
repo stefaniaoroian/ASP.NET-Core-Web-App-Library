@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:Oroian_Stefania_Lab2_1_Context"
+    }
+  }
+}
