@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "/"
 @model Oroian_Stefania_Lab2_1_.Pages.Books.IndexModel
 
 @{
@@ -26,14 +26,23 @@
                 @Html.DisplayNameFor(model => model.Book[0].Publisher.PublisherName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Book[0].Author.AuthorFirstName)
+                @Html.DisplayNameFor(model => model.Book[0].Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Book[0].BookCategories)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Book) {
-        <tr>
+        @foreach (var item in Model.BookD.Books)
+        {
+            string selectedRow = "";
+            if (item.ID == Model.BookID)
+            {
+                selectedRow = "table-success";
+            }
+        <tr class="@selectedRow">
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
@@ -48,6 +57,15 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Author.AuthorFirstName)
+                    @Html.DisplayFor(modelItem => item.Author.AuthorLastName)
+                </td>
+                <td>
+                    @{
+                        foreach (var category in item.BookCategories)
+                        {
+                            @category.Category.ID @: @category.Category.CategoryName <br />
+                        }
+                    }
                 </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |

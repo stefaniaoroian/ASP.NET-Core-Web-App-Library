@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Oroian_Stefania_Lab2_1_.Data;
 
@@ -11,9 +12,10 @@ using Oroian_Stefania_Lab2_1_.Data;
 namespace Oroian_Stefania_Lab2_1_.Migrations
 {
     [DbContext(typeof(Oroian_Stefania_Lab2_1_Context))]
-    partial class Oroian_Stefania_Lab2_1_ContextModelSnapshot : ModelSnapshot
+    [Migration("20221028213158_BookCategory")]
+    partial class BookCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
