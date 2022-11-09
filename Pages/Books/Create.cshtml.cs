@@ -27,7 +27,7 @@ namespace Oroian_Stefania_Lab2_1_.Pages.Books
                 FullName = x.AuthorFirstName + " " + x.AuthorLastName
             });
             ViewData["AuthorID"] = new SelectList(authorList, "ID", "FullName");
-            ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID",
+            ViewData["PublisherID"] = new SelectList(_context.Set<Models.Publisher>(), "ID",
            "PublisherName");
 
             var book = new Book();
@@ -55,16 +55,18 @@ namespace Oroian_Stefania_Lab2_1_.Pages.Books
                     newBook.BookCategories.Add(catToAdd);
                 }
             }
-            if (await TryUpdateModelAsync<Book>(
-            newBook,
-            "Book",
-            i => i.Title, i => i.AuthorID,
-            i => i.Price, i => i.PublishingDate, i => i.PublisherID))
-            {
-                _context.Book.Add(newBook);
-                await _context.SaveChangesAsync();
-                return RedirectToPage("./Index");
-            }
+
+             if (await TryUpdateModelAsync<Book>(
+             newBook,
+             "Book",
+             i => i.Title, i => i.AuthorID,
+             i => i.Price, i => i.PublishingDate, i => i.PublisherID))
+             {
+                 _context.Book.Add(newBook);
+                 await _context.SaveChangesAsync();
+                 return RedirectToPage("./Index");
+             }
+
             PopulateAssignedCategoryData(_context, newBook);
             return Page();
         }
