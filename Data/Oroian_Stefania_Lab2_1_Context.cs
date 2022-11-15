@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Oroian_Stefania_Lab2_1_.Models;
+using Oroian_Stefania_Lab2_1_.Models.ViewModels;
 
 namespace Oroian_Stefania_Lab2_1_.Data
 {
@@ -21,5 +22,9 @@ namespace Oroian_Stefania_Lab2_1_.Data
         public DbSet<Oroian_Stefania_Lab2_1_.Models.Author> Author { get; set; }
 
         public DbSet<Oroian_Stefania_Lab2_1_.Models.Category> Category { get; set; }
+
+        public DbSet<Oroian_Stefania_Lab2_1_.Models.Member> Member { get; set; }
+
+        public DbSet<Oroian_Stefania_Lab2_1_.Models.ViewModels.Borrowing> Borrowing { get; set; }
     }
 }

@@ -1,12 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Oroian_Stefania_Lab2_1_.Data;
+using Microsoft.AspNetCore.Identity;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<Oroian_Stefania_Lab2_1_Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Oroian_Stefania_Lab2_1_Context") ?? throw new InvalidOperationException("Connection string 'Oroian_Stefania_Lab2_1_Context' not found.")));
+
+
+builder.Services.AddDbContext<LibraryIdentityContext>(options =>
+
+options.UseSqlServer(builder.Configuration.GetConnectionString("Oroian_Stefania_Lab2_1_Context") ?? throw new InvalidOperationException("Connectionstring 'Oroian_Stefania_Lab2_1_Context' not found.")));
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+options.SignIn.RequireConfirmedAccount = true)
+ .AddEntityFrameworkStores<LibraryIdentityContext>();
 
 var app = builder.Build();
 
@@ -22,6 +31,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();;
 
 app.UseAuthorization();
 
